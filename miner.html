@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebMinePool Mining Interface</title>
+    <script src="https://www.webminepool.com/lib/simple-ui.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        #container {
+            margin-top: 100px;
+        }
+        h1 {
+            color: #333;
+        }
+        #controls {
+            margin: 20px auto;
+        }
+        button {
+            padding: 12px 25px;
+            margin: 10px;
+            font-size: 18px;
+            color: white;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #status {
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        #status span {
+            color: green;
+        }
+        #status.stopped span {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="container">
+        <h1>WebMinePool Mining Interface</h1>
+        <div id="wmp-container"
+            wmp-site-key="SK_4wbY3bmgzzdtwDYJ5CAzw"   <!-- Replace with your actual site key -->
+            wmp-username="ameila"  <!-- Replace with your username -->
+            wmp-threads="2"            <!-- Set the number of threads -->
+            wmp-throttle="0.2"         <!-- Set CPU usage throttle (0.2 = 80% CPU use) -->
+            wmp-autostart="false"      <!-- Prevent auto start -->
+            style="margin: 0 auto;">
+        </div>
+
+        <!-- Controls to start/stop mining -->
+        <div id="controls">
+            <button onclick="startMining()">Start Mining</button>
+            <button onclick="stopMining()">Stop Mining</button>
+        </div>
+
+        <!-- Status area -->
+        <div id="status" class="stopped">
+            Mining status: <span>Stopped</span>
+        </div>
+    </div>
+
+    <script>
+        // Function to start mining
+        function startMining() {
+            WMP.startMining(); // Start the mining process
+            document.getElementById('status').innerHTML = 'Mining status: <span>Running</span>';
+            document.getElementById('status').classList.remove('stopped');
+        }
+
+        // Function to stop mining
+        function stopMining() {
+            WMP.stopMining(); // Stop the mining process
+            document.getElementById('status').innerHTML = 'Mining status: <span>Stopped</span>';
+            document.getElementById('status').classList.add('stopped');
+        }
+    </script>
+    
+</body>
+</html>
